@@ -16,7 +16,7 @@
     "repository": "https://github.com/chrispiasecki/pptb-auditing-manager",
     "website": "https://github.com/chrispiasecki/pptb-auditing-manager",
     "readmeUrl": "https://raw.githubusercontent.com/chrispiasecki/pptb-auditing-manager/refs/heads/main/README.md",
-    "iconUrl": "https://raw.githubusercontent.com/chrispiasecki/pptb-auditing-manager/refs/heads/main/assets/audit-manager-icon.svg"
+    "iconUrl": "https://raw.githubusercontent.com/chrispiasecki/pptb-auditing-manager/refs/heads/main/assets/audit-manager-icon.png"
   },
   "engines": {
     "node": ">=18.0.0"
