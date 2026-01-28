@@ -1,0 +1,25 @@
+# Source & build config
+src/
+index.html
+vite.config.ts
+tsconfig.json
+tsconfig.node.json
+postcss.config.js
+tailwind.config.js
+
+# Dependencies & lock files
+node_modules/
+package-lock.json
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# IDE & tools
+.vscode/
+.idea/
+.claude/
+
+# Logs
+*.log
