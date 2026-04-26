@@ -5,6 +5,7 @@ import { TableAuditManager } from './components/table-settings/TableAuditManager
 import { AuditLogExplorer } from './components/audit-logs/AuditLogExplorer';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { logAvailableAPIMethods } from './services/auditService';
+import { clearMetadataCache } from './services/metadataService';
 import type { AuditView } from './model/audit';
 
 // Icons as SVG components
@@ -107,6 +108,7 @@ function App() {
         case 'connection:updated':
         case 'connection:created':
         case 'connection:deleted':
+          clearMetadataCache();
           refreshConnection();
           break;
       }

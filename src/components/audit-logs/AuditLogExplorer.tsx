@@ -234,13 +234,16 @@ export const AuditLogExplorer: React.FC<AuditLogExplorerProps> = ({ isConnected,
     (logicalNames: string[]) => {
       console.log('[AuditLogExplorer] Tables selected:', logicalNames);
       try {
-        setTables(logicalNames);
+        const objectTypeCodes = logicalNames
+          .map(ln => tables.find(t => t.logicalName === ln)?.objectTypeCode ?? 0)
+          .filter(code => code > 0);
+        setTables(logicalNames, objectTypeCodes);
         clearRecordSelection();
       } catch (err) {
         console.error('[AuditLogExplorer] Error in handleTableSelect:', err);
       }
     },
-    [setTables, clearRecordSelection]
+    [setTables, clearRecordSelection, tables]
   );
 
   // Handle record selection

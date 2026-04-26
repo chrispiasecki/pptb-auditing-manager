@@ -47,14 +47,20 @@ export async function parseMetadataAuditDetail(entry: AuditLogEntry): Promise<Me
 
     const actionNum = entry.action as number;
 
-    // For actions 102, 103, 104 (Audit Change events), convert "True"/"False" to Enabled/Disabled
+    // For actions 102, 103, 104 (Audit Change events), changeData holds the PREVIOUS value.
+    // "False" means audit was off before (now turned on = enabled); "True" means it was on before (now disabled).
     if (actionNum >= 102 && actionNum <= 104 && entry.changeData) {
       const changeDataLower = entry.changeData.toLowerCase().trim();
-      if (changeDataLower === 'true') {
-        auditEnabled = true;
-      } else if (changeDataLower === 'false') {
-        auditEnabled = false;
+      if (changeDataLower === 'false') {
+        auditEnabled = true;  // was disabled, change enabled it
+      } else if (changeDataLower === 'true') {
+        auditEnabled = false; // was enabled, change disabled it
       }
+    }
+
+    // For actions 105-110 the enabled/disabled state is encoded directly in the action code
+    if (actionNum >= 105 && actionNum <= 110) {
+      auditEnabled = actionNum <= 107; // 105-107 = Started/Enabled; 108-110 = Stopped/Disabled
     }
 
     // For action 103 (Audit Change at Attribute Level), also look up the attribute

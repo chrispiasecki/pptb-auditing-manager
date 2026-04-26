@@ -39,7 +39,7 @@ interface UseAuditLogsResult {
 
   // Filters
   filters: AuditFiltersState;
-  setTables: (logicalNames: string[]) => void;
+  setTables: (logicalNames: string[], objectTypeCodes: number[]) => void;
   setRecord: (id: string | null, name: string | null) => void;
   setSelectedAttributes: (attributes: string[]) => void;
   setOperations: (operations: number[]) => void;
@@ -111,8 +111,8 @@ export function useAuditLogs(isConnected: boolean = false): UseAuditLogsResult {
   } = useAuditFilters(handleFilterChange);
 
   // Wrap setTables to also clear details
-  const setTables = useCallback((logicalNames: string[]) => {
-    setTablesBase(logicalNames);
+  const setTables = useCallback((logicalNames: string[], objectTypeCodes: number[]) => {
+    setTablesBase(logicalNames, objectTypeCodes);
     setDetailsMap(new Map());
     clearAuditDetailsCache();
   }, [setTablesBase]);

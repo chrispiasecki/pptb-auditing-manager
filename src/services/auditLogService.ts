@@ -56,13 +56,13 @@ function decodePagingCookie(rawCookie: string): string {
 function buildFetchXmlFilters(filters: AuditFiltersState): string {
   const conditions: string[] = [];
 
-  // Table filter (objecttypecode)
-  if (filters.tableLogicalNames.length > 0) {
-    if (filters.tableLogicalNames.length === 1) {
-      conditions.push(`<condition attribute="objecttypecode" operator="eq" value="${escapeXml(filters.tableLogicalNames[0])}" />`);
+  // Table filter (objecttypecode) — use numeric ObjectTypeCode for reliable matching
+  if (filters.tableObjectTypeCodes.length > 0) {
+    if (filters.tableObjectTypeCodes.length === 1) {
+      conditions.push(`<condition attribute="objecttypecode" operator="eq" value="${filters.tableObjectTypeCodes[0]}" />`);
     } else {
-      const tableConditions = filters.tableLogicalNames
-        .map(t => `<condition attribute="objecttypecode" operator="eq" value="${escapeXml(t)}" />`)
+      const tableConditions = filters.tableObjectTypeCodes
+        .map(code => `<condition attribute="objecttypecode" operator="eq" value="${code}" />`)
         .join('\n            ');
       conditions.push(`<filter type="or">\n            ${tableConditions}\n          </filter>`);
     }

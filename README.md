@@ -1,6 +1,6 @@
 # Auditing Manager
 
-A [Power Platform Toolbox](https://www.powerplatformtoolbox.com/) tool for viewing Dataverse audit logs and managing audit settings in one place.
+A [Power Platform ToolBox](https://www.powerplatformtoolbox.com/) tool for viewing Dataverse audit logs and managing audit settings in one place.
 
 ## Features
 

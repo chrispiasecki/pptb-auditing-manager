@@ -251,6 +251,7 @@ export interface SortState {
 // Filter state
 export interface AuditFiltersState {
   tableLogicalNames: string[];
+  tableObjectTypeCodes: number[];
   recordId: string | null;
   recordName: string | null;
   selectedAttributes: string[];
@@ -275,6 +276,7 @@ export interface PaginationState {
 // Initial filter state
 export const initialFiltersState: AuditFiltersState = {
   tableLogicalNames: [],
+  tableObjectTypeCodes: [],
   recordId: null,
   recordName: null,
   selectedAttributes: [],
