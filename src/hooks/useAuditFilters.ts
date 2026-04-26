@@ -3,7 +3,7 @@ import { AuditFiltersState, initialFiltersState } from '../model/auditLog';
 
 // Action types for filter reducer
 type FilterAction =
-  | { type: 'SET_TABLES'; payload: string[] }
+  | { type: 'SET_TABLES'; payload: { logicalNames: string[]; objectTypeCodes: number[] } }
   | { type: 'SET_RECORD'; payload: { id: string | null; name: string | null } }
   | { type: 'SET_ATTRIBUTES'; payload: string[] }
   | { type: 'SET_OPERATIONS'; payload: number[] }
@@ -20,7 +20,8 @@ function filterReducer(state: AuditFiltersState, action: FilterAction): AuditFil
     case 'SET_TABLES':
       return {
         ...state,
-        tableLogicalNames: action.payload,
+        tableLogicalNames: action.payload.logicalNames,
+        tableObjectTypeCodes: action.payload.objectTypeCodes,
         // Clear record selection when tables change
         recordId: null,
         recordName: null,
@@ -63,7 +64,7 @@ function filterReducer(state: AuditFiltersState, action: FilterAction): AuditFil
 
 export interface UseAuditFiltersResult {
   filters: AuditFiltersState;
-  setTables: (logicalNames: string[]) => void;
+  setTables: (logicalNames: string[], objectTypeCodes: number[]) => void;
   setRecord: (id: string | null, name: string | null) => void;
   setSelectedAttributes: (attributes: string[]) => void;
   setOperations: (operations: number[]) => void;
@@ -82,8 +83,8 @@ export interface UseAuditFiltersResult {
 export function useAuditFilters(onFilterChange?: () => void): UseAuditFiltersResult {
   const [filters, dispatch] = useReducer(filterReducer, initialFiltersState);
 
-  const setTables = useCallback((logicalNames: string[]) => {
-    dispatch({ type: 'SET_TABLES', payload: logicalNames });
+  const setTables = useCallback((logicalNames: string[], objectTypeCodes: number[]) => {
+    dispatch({ type: 'SET_TABLES', payload: { logicalNames, objectTypeCodes } });
     onFilterChange?.();
   }, [onFilterChange]);
 
