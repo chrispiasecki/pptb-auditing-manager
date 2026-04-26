@@ -232,8 +232,8 @@ export const AuditDetailsDialog: React.FC<AuditDetailsDialogProps> = ({
   const renderMetadataDetails = () => {
     if (metadataDetails.length === 0) return null;
 
-    // Actions that show Enabled/Disabled status
-    const auditChangeActions = [102, 103, 104];
+    // Actions that show Enabled/Disabled status (102-104 via changeData; 105-110 via action code)
+    const auditChangeActions = [102, 103, 104, 105, 106, 107, 108, 109, 110];
 
     return metadataDetails.map((detail, index) => {
       const isAuditChangeAction = auditChangeActions.includes(detail.action);
