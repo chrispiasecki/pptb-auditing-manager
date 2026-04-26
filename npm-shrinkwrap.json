@@ -13,7 +13,7 @@
         "react-dom": "^18.3.1"
       },
       "devDependencies": {
-        "@pptb/types": "^1.0.1",
+        "@pptb/types": "^1.2.1",
         "@types/react": "^18.3.12",
         "@types/react-dom": "^18.3.1",
         "@vitejs/plugin-react": "^4.3.4",
@@ -853,11 +853,14 @@
       }
     },
     "node_modules/@pptb/types": {
-      "version": "1.0.17",
-      "resolved": "https://registry.npmjs.org/@pptb/types/-/types-1.0.17.tgz",
-      "integrity": "sha512-QKXhPijdftsVb8NGD7Ce46toqfqes4Sw63P07xEK/PzhEAAuTMrjZjcBDqnLlqIYggPzJUOv/fFnBZ/bEkNoRQ==",
+      "version": "1.2.1",
+      "resolved": "https://registry.npmjs.org/@pptb/types/-/types-1.2.1.tgz",
+      "integrity": "sha512-U8/Tij6CB09T+g/lE3gubdNnw7wmHz4LKoaWCMiXsv6BTNliXD99Wt6XW1K7WWdUwhIknKK9Jor3YhzoboVhHA==",
       "dev": true,
-      "license": "GPL-3.0"
+      "license": "GPL-3.0",
+      "bin": {
+        "pptb-validate": "bin/pptb-validate.js"
+      }
     },
     "node_modules/@rolldown/pluginutils": {
       "version": "1.0.0-beta.27",
